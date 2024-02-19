@@ -65,3 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Use Slim(2024/2/19)
+gem 'slim-rails'
+gem 'html2slim'
