@@ -72,3 +72,5 @@ gem 'html2slim'
 
 # Use bootstrap
 gem 'bootstrap'
+
+gem 'sassc-rails'
