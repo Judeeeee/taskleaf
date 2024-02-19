@@ -69,3 +69,6 @@ end
 # Use Slim(2024/2/19)
 gem 'slim-rails'
 gem 'html2slim'
+
+# Use bootstrap
+gem 'bootstrap'
