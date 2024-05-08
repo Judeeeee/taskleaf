@@ -74,3 +74,4 @@ gem 'html2slim'
 gem 'bootstrap'
 
 gem 'sassc-rails'
+gem 'rails_autolink'
