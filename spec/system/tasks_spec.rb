@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'タスク管理機能', type: :system do
+  def wait_for_turbo(timeout = nil)
+    if has_css?('.turbo-progress-bar', visible: true, wait: (0.25).seconds)
+      has_no_css?('.turbo-progress-bar', wait: timeout.presence || 5.seconds)
+    end
+  end
+
   let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com') }
   let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com') }
   let!(:task_a) { FactoryBot.create(:task, name: '最初のタスク', user: user_a) }
@@ -10,6 +16,7 @@ describe 'タスク管理機能', type: :system do
     fill_in 'メールアドレス', with: login_user.email
     fill_in 'パスワード', with: login_user.password
     click_button 'ログインする'
+    wait_for_turbo
   end
 
   shared_examples_for 'ユーザーAが作成したタスクが表示される' do
