@@ -15,6 +15,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
+      logger.debug "task: #{@task.attributes.inspect}"
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new, status: :unprocessable_entity
@@ -41,5 +42,9 @@ class TasksController < ApplicationController
 
   def set_task
     @task = current_user.tasks.find(params[:id])
+  end
+
+  def task_logger
+    @task_logger ||= Logger.new('log/task.log', 'daily')
   end
 end
