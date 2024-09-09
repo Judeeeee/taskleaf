@@ -11,8 +11,18 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def confirm_new
+    @task = current_user.tasks.new(task_params)
+    render :new unless @task.valid?
+  end
+
   def create
     @task = current_user.tasks.new(task_params)
+
+    if params[:back].present?
+      render :new, status: :unprocessable_entity
+      return
+    end
 
     if @task.save
       logger.debug "task: #{@task.attributes.inspect}"
