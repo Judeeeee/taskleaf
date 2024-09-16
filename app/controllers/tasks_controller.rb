@@ -27,6 +27,7 @@ class TasksController < ApplicationController
 
     if @task.save
       logger.debug "task: #{@task.attributes.inspect}"
+      TaskMailer.creation_email(@task).deliver_later(wait: 5.minutes)
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new, status: :unprocessable_entity
