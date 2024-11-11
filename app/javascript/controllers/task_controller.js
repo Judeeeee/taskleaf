@@ -1,0 +1,16 @@
+import { Controller } from "@hotwired/stimulus"
+
+// Connects to data-controller="task"
+export default class extends Controller {
+  connect() {
+    document.querySelectorAll('td').forEach(function(td){
+      td.addEventListener('mouseover', function(e){
+        e.currentTarget.style.backgroundColor = '#eff'
+      })
+
+      td.addEventListener('mouseout', function(e){
+        e.currentTarget.style.backgroundColor = ''
+      })
+    })
+  }
+}

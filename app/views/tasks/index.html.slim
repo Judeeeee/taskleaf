@@ -18,7 +18,7 @@ h1 タスク一覧
   = paginate @tasks
   = page_entries_info @tasks
 
-table.table.table-hover
+table.table.table-hover data-controller="task"
   thead.thead-default
     tr
       th= sort_link(@q, :name, [:name, 'created_at desc'])
