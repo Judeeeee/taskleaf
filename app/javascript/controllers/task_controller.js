@@ -12,5 +12,14 @@ export default class extends Controller {
         e.currentTarget.style.backgroundColor = ''
       })
     })
+
+    document.querySelectorAll('.delete').forEach(function(a) {
+      a.addEventListener('ajax:success', function() {
+        console.log('テスト')
+        var td = a.parentNode;
+        var tr = td.parentNode;
+        tr.style.display = 'none';
+      })
+    })
   }
 }
